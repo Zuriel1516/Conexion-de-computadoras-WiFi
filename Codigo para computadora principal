@@ -1,0 +1,27 @@
+# Conexion-de-computadoras-WiFi
+Codigo para comunicar dos computadores por medio de WiFi con ayuda de la IP.
+**Primer codigo para comunicacion, codigo para primer computadora**
+import socket
+
+# Crear socket
+servidor = socket.socket()
+
+# Dirección y puerto
+servidor.bind(("0.0.0.0", 5000))
+
+# Esperar conexión
+servidor.listen(1)
+print("Esperando conexión...")
+
+conexion, direccion = servidor.accept()
+print("Conectado con:", direccion)
+
+while True:
+    # Recibir mensaje del cliente
+    mensaje = conexion.recv(1024).decode()
+    print("Cliente:", mensaje)
+
+    # Escribir respuesta
+    respuesta = input("Tú: ")
+    conexion.send(respuesta.encode())
+
