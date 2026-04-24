@@ -1,5 +1,5 @@
 **Primer codigo para computadora que se conectara**
-
+**Autor- Zuriel**
 import socket
 
 # Crear socket
