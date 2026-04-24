@@ -1,6 +1,7 @@
 # Conexion-de-computadoras-WiFi
 Codigo para comunicar dos computadores por medio de WiFi con ayuda de la IP.
 **Primer codigo para comunicacion, codigo para primer computadora**
+**Autor-Zuriel**
 import socket
 
 # Crear socket
