@@ -1,0 +1,20 @@
+**Primer codigo para computadora que se conectara**
+
+import socket
+
+# Crear socket
+cliente = socket.socket()
+
+# Cambiar esta IP por la del servidor
+cliente.connect(("0.0.0.0", 5000))
+
+print("Conectado al servidor")
+
+while True:
+    # Escribir mensaje
+    mensaje = input("Tú: ")
+    cliente.send(mensaje.encode())
+
+    # Recibir respuesta
+    respuesta = cliente.recv(1024).decode()
+    print("Servidor:", respuesta)
