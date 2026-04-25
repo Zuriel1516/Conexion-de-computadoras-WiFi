@@ -1,0 +1,49 @@
+#Autora-Michelle
+
+import socket
+import hashlib
+import os
+
+HOST = "192.168.1.181"  # cambiar por la IP del servidor dependiendo el lugar donde se encuentre
+PORT = 6000
+
+archivo = input("Nombre del archivo a enviar: ")
+
+# Calcular tamaño y hash
+tamaño = os.path.getsize(archivo)
+
+sha256 = hashlib.sha256()
+with open(archivo, "rb") as f:
+    sha256.update(f.read())
+
+hash_archivo = sha256.hexdigest()
+
+# Conectar
+cliente = socket.socket()
+cliente.connect((HOST, PORT))
+
+# Enviar encabezado
+header = f"{archivo}|{tamaño}|{hash_archivo}"
+cliente.send(header.encode())
+
+# Esperar confirmación
+respuesta = cliente.recv(1024).decode()
+
+if respuesta == "READY":
+    print("Enviando archivo...")
+
+    with open(archivo, "rb") as f:
+        while True:
+            data = f.read(1024)
+            if not data:
+                break
+            cliente.send(data)
+
+    # Esperar resultado
+    resultado = cliente.recv(1024).decode()
+    print("Resultado:", resultado)
+
+else:
+    print("Servidor no listo")
+
+cliente.close()
