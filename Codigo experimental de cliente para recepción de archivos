@@ -1,0 +1,60 @@
+
+import socket
+
+# Crear socket
+servidor = socket.socket()
+import socket
+import hashlib
+import os
+
+HOST = "0.0.0.0"
+PORT = 6000
+
+server = socket.socket()
+server.bind((HOST, PORT))
+server.listen(1)
+
+print("Servidor de archivos esperando conexión...")
+
+conn, addr = server.accept()
+print("Conectado con:", addr)
+
+# Recibir encabezado
+header = conn.recv(1024).decode()
+nombre, tamaño, hash_cliente = header.split("|")
+tamaño = int(tamaño)
+
+print("Archivo:", nombre)
+print("Tamaño:", tamaño)
+
+**Codigo experimetal**
+**Autor-Zuriel**
+# Confirmar recepción
+conn.send("READY".encode())
+
+# Recibir archivo
+ruta = "received_" + nombre
+with open(ruta, "wb") as f:
+    bytes_recibidos = 0
+    while bytes_recibidos < tamaño:
+        data = conn.recv(1024)
+        f.write(data)
+        bytes_recibidos += len(data)
+
+# Calcular hash
+sha256 = hashlib.sha256()
+with open(ruta, "rb") as f:
+    sha256.update(f.read())
+
+hash_servidor = sha256.hexdigest()
+
+# Verificar
+if hash_servidor == hash_cliente:
+    conn.send("OK".encode())
+    print("Archivo recibido correctamente")
+else:
+    conn.send("ERROR".encode())
+    print("Error en el archivo ")
+
+conn.close()
+server.close()
