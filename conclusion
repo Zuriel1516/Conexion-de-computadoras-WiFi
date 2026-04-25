@@ -1,0 +1,11 @@
+conclusion
+## ✅ Conclusión
+
+El desarrollo de este proyecto permitió comprender de manera práctica el funcionamiento de la comunicación en red mediante sockets en Python, específicamente bajo el modelo cliente-servidor utilizando el protocolo TCP. A través de la implementación del chat punto a punto, se logró establecer una conexión estable entre dos dispositivos en una red local, validando conceptos como direcciones IP, puertos y transmisión de datos en tiempo real.
+
+Además, la integración de la transferencia de archivos reforzó el manejo de datos binarios, el uso de estructuras de control para envío por bloques y la verificación de integridad mediante algoritmos de hash como SHA256. Esto permitió asegurar que la información enviada se recibiera correctamente, cumpliendo con los requisitos básicos de confiabilidad.
+
+Durante el desarrollo también se enfrentaron retos relacionados con la configuración de red, firewalls y conectividad, los cuales fueron resueltos mediante pruebas en distintas condiciones como misma red y hotspot. Estas dificultades contribuyeron a fortalecer la comprensión de aspectos prácticos de redes que no siempre son evidentes en la teoría.
+
+Finalmente, el proyecto no solo consolidó conocimientos técnicos en programación y redes, sino que también fomentó buenas prácticas como la documentación, el uso de control de versiones y la generación de evidencia mediante logs y capturas. En conjunto, se logró un sistema funcional, claro y reproducible que cumple con los objetivos planteados.
+
